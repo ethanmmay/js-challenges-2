@@ -4,6 +4,10 @@
 // output: ['is', 'a', 'split', 'sentence.', 'This']
 
 function rearranger(arr) {
+    let tempElem = arr[0]
+    arr.splice(0, 1)
+    arr[arr.length] = tempElem
+    return arr
 }
 
 
@@ -16,6 +20,24 @@ function rearranger(arr) {
 // output: 42
 
 function largestNum(arr) {
+    let largestNum = 0
+    let duplicates = 0
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > largestNum) {
+            largestNum = arr[i]
+        } else if (arr[i] == largestNum) {
+            duplicates++
+        }
+    }
+    if (duplicates > 0) {
+        duplicates++
+        var largestNumAmount = {
+            [largestNum]: duplicates
+        }
+        return largestNumAmount
+    } else {
+        return largestNum
+    }
 }
 
 
@@ -28,6 +50,10 @@ function largestNum(arr) {
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i] * arr.length
+    }
+    return arr
 }
 
 
@@ -62,8 +88,15 @@ let flights = [{
 
 
 function flightCost(destination, firstClass) {
-    //***hint: use the find method***
-
+    for (let i = 0; i < flights.length; i++) {
+        if (flights[i].to.toLowerCase() == destination.toLowerCase()) {
+            if (firstClass) {
+                return flights[i].prices.firstClass
+            } else {
+                return flights[i].prices.standard
+            }
+        }
+    }
 }
 
 
@@ -84,7 +117,15 @@ let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'P
 { id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
 
 function findById(id) {
-
+    for (let i = 0; i < staff.length; i++) {
+        if (staff[i].id == id) {
+            return staff[i]
+        } 
+    }
+    let error = {
+        error: "No user with that id."
+    }
+    return error
 }
 
 
@@ -111,4 +152,9 @@ let theBand = {
 }
 
 function bandMemberDetails(name) {
+    for (let i = 0; i < theBand.members.length; i++) {
+        if (theBand.members[i].name.search(name) != -1) {
+            return "" + theBand.members[i].name + " is in the band and plays the " + theBand.members[i].instrument
+        }
+    }
 }

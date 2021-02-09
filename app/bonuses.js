@@ -9,7 +9,9 @@
 // Hint: Utilize the string prototype method charCodeAt and generic method fromCharCode
 
 function letterChecker(str) {
-
+    // find first corresponding letter
+    // check if next letter is in pattern
+    // if yes, repeat. if no, insert it into string
 }
 
 
@@ -23,6 +25,15 @@ function letterChecker(str) {
 // output: true (because 4+3)
 
 function sumEqualsTarget(arr, target) {
+    for (let i = 0; i < arr.length; i++) {
+        let tryNum = arr[i]
+        for (let j = 0; j < arr.length; j++) {
+            if (tryNum + arr[j] == target) {
+                return true
+            }
+        }
+    }
+    return false
 }
 
 
@@ -36,4 +47,17 @@ function sumEqualsTarget(arr, target) {
 // output: [2, 1, 4, 3, 6, 6, 5, 9, 8]
 
 function oddAscender(arr) {
+    arr_o = []
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 != 0) {
+            arr_o.push(arr[i])
+            arr[i] = "x"
+        }
+    }
+    arr_o.sort(function(a, b){return a-b})
+    for (let i = 0; i < arr_o.length; i++) {
+        arr[arr.indexOf("x")] = arr_o[i]
+    }
+    console.log(arr)
+    return arr
 }
