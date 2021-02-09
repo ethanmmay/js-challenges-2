@@ -10,8 +10,16 @@
 
 function letterChecker(str) {
     // find first corresponding letter
-    // check if next letter is in pattern
-    // if yes, repeat. if no, insert it into string
+    // check next corresponding index
+    // if different, use as missing letter, if same, continue
+    let alphabet = "abcdefghijklmnopqrstuvwxyz"
+    let startIndex = alphabet.search(str[0])
+    for (let i = 1; i < str.length; i++) {
+        if (alphabet[i+startIndex] != str[i]) {
+            return alphabet[i+startIndex]
+        }
+    }
+    return "no missing letters"
 }
 
 
@@ -25,9 +33,16 @@ function letterChecker(str) {
 // output: true (because 4+3)
 
 function sumEqualsTarget(arr, target) {
+    let tryNum
+    // let numsTried = [] *** Collecting numsTried could save time, but could also lose time due to lack of duplicate nums in the randomly generated "bigArr"
     for (let i = 0; i < arr.length; i++) {
-        let tryNum = arr[i]
-        for (let j = 0; j < arr.length; j++) {
+        tryNum = arr[i]
+        // if (numsTried.indexOf(tryNum) == -1) {
+        //     numsTried.push(tryNum)
+        // } else {
+        //     continue
+        // }
+        for (let j = i; j < arr.length; j++) {
             if (tryNum + arr[j] == target) {
                 return true
             }
@@ -58,6 +73,5 @@ function oddAscender(arr) {
     for (let i = 0; i < arr_o.length; i++) {
         arr[arr.indexOf("x")] = arr_o[i]
     }
-    console.log(arr)
     return arr
 }
